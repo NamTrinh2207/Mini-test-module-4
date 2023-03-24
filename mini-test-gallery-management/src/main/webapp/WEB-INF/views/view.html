@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>View Painting</h3>
+<p>
+    <a th:href="@{/paintings}">
+        Back to paintings list
+    </a>
+</p>
+<p><label>Mô tả:</label>
+    <label th:text="${paintings.describe}"></label></p>
+<ul>
+    <li><label>Mã tranh:</label>
+        <label th:text="${paintings.code}"></label></li>
+    <li><label>Chiều cao:</label>
+        <label th:text="${paintings.height}"></label></li>
+    <li><label>Chiều rộng:</label>
+        <label th:text="${paintings.weight}"></label></li>
+    <li><label>Chất liệu:</label>
+        <label th:text="${paintings.material}"></label></li>
+    <li><label>Giá:</label>
+        <label th:text="${paintings.price}"></label></li>
+</ul>
+</body>
+<footer th:replace="/layout :: footer"></footer>
+</html>

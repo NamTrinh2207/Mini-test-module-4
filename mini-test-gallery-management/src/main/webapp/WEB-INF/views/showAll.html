@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="/layout :: head">
+    <title>Products List</title>
+</head>
+<body>
+<h3>Painting List</h3>
+<p>
+    <a th:href="@{/paintings/save}">
+        Add new painting
+    </a>
+</p>
+<form style="display:block" class="paintings" th:action="@{/paintings/search}" th:object="${paintings}" method="get">
+    <input type="text" name="name">
+    <input type="submit" value="Search">
+</form>
+<br>
+<table class="paintings">
+    <thead>
+    <tr>
+        <th>Mã tranh</th>
+        <th>Chiều cao</th>
+        <th>Chiều rộng</th>
+        <th>Chất liệu</th>
+        <th>Mô tả</th>
+        <th>Giá</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="painting: ${paintings}">
+        <td th:text="${painting.code}"></td>
+        <td th:text="${painting.height}"></td>
+        <td th:text="${painting.weight}"></td>
+        <td th:text="${painting.material}"></td>
+        <td th:text="${painting.describe}"></td>
+        <td th:text="${painting.price}"></td>
+        <td><a th:href="@{/paintings/{id}/update(id=${painting.getId()})}">update</a></td>
+        <td><a onclick="doDelete()" th:href="@{/paintings/delete(id=${painting.getId()})}">delete</a></td>
+        <td><a th:href="@{/paintings/{id}/view(id=${painting.getId()})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+<script>
+    function doDelete() {
+        if (confirm("Bạn có chắc chắn muốn xóa không ?")) {
+            window.location = "redirect:/paintings";
+        }
+    }
+</script>
+</body>
+</html>
